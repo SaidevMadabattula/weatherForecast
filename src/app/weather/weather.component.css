@@ -1,0 +1,28 @@
+.mycontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eeae5f;
+}
+
+p {
+    margin: 5px;
+}
+
+.responsive-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.container {
+    padding: 24px;
+}
+
+.button {
+    cursor: pointer;
+    background-color: white;
+    border-color: white;
+    margin: 7px;
+    border-radius: 7px;
+}

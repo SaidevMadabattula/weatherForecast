@@ -1,0 +1,42 @@
+<app-spinner *ngIf="isLoading">{{ isLoading }}</app-spinner>
+
+<div class="mycontainer">
+    <div class="row">
+        <h3 class="text-center my-4">Search for Weather Forecast for 5 days:</h3>
+        <form [formGroup]="weatherSearchForm" (ngSubmit)="fetchWeatherData(weatherSearchForm.value)">
+            <div class="form-group">
+                <input type="text" class="form-control" id="location" aria-describedby="location"
+                    placeholder="Please input a location" formControlName="location" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="button">Search for the weather</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container responsive-grid">
+    <mat-card *ngFor="let data of weatherForecastForFiveDays" style="border: 1px solid orange; background: #eeae5f">
+        <mat-card-header>
+            <mat-card-title>{{ city | uppercase}} </mat-card-title>
+            <h2>{{data.dt_txt | date: 'dd/MM/YYYY'}}</h2>
+        </mat-card-header>
+        <br />
+        <mat-card-content>
+            <br />
+            <img src="https://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png" alt="weather image">
+            <p class="card-text">Summary: {{data.weather[0].main}}</p>
+            <p class="card-text">Temperature: {{data.main.temp | number: '1.0-0'}} °{{units=='imperial' ? 'F' : 'C'}}
+            </p>
+            <p class="card-text">Feels like: {{data.main.feels_like | number: '1.0-0'}} °{{units=='imperial' ? 'F' :
+                'C'}}</p>
+            <p class="card-text">Max Temperature: {{data.main.temp_max | number: '1.0-0'}} °{{units=='imperial' ? 'F' :
+                'C'}}</p>
+            <p class="card-text">Min Temperature: {{data.main.temp_min | number: '1.0-0'}} °{{units=='imperial' ? 'F' :
+                'C'}}</p>
+            <p class="card-text">Pressure: {{data.main.pressure}} hPa</p>
+            <p class="card-text">Humidity: {{data.main.humidity}} %</p>
+        </mat-card-content>
+
+    </mat-card>
+</div>
